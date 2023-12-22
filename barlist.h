@@ -1,3 +1,6 @@
+#ifndef BARLIST_H
+#define BARLIST_H
+
 #include "bar.h"
 #include <stdlib.h>
 
@@ -8,6 +11,7 @@ typedef struct BarList {
 } BarList;
 
 BarList* CreateBarList();
-BarList* CreateBarListWithInitalCapacity(size_t capacity);
 int AddToBarList(BarList* list, Bar bar);
 void DestroyBarList(BarList* list);
+
+#endif // !BARLIST_H
