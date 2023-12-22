@@ -1,6 +1,6 @@
 #include "barlist.h"
-#include "defaults.h"
 #include "colors.h"
+#include "defaults.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_error.h>
 #include <SDL2/SDL_events.h>
@@ -15,11 +15,22 @@ SDL_Renderer *renderer;
 
 BarList *bars;
 
+int graphRightOffset = 40;
+int graphBottomY = 700;
+int numBars = 200;
+
 void Quit() {
   DestroyBarList(bars);
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
   SDL_Quit();
+}
+
+void RandomizeBars(BarList *bars) {
+  for (int i = 0; i < numBars; i++) {
+    int value = rand() % 600;
+    bars->array[i].h = value;
+  }
 }
 
 int main() {
@@ -46,9 +57,6 @@ int main() {
 
   srand(time(NULL));
 
-  int graphRightOffset = 40;
-  int graphBottomY = 700;
-  int numBars = 200;
   bars = CreateBarList();
   if (bars == NULL) {
     return -1;
@@ -71,8 +79,17 @@ int main() {
 
   while (running) {
     while (SDL_PollEvent(&e) != 0) {
-      if (e.type == SDL_QUIT) {
+      switch (e.type) {
+      case SDL_KEYUP:
+        switch (e.key.keysym.sym) {
+        case SDLK_r:
+          RandomizeBars(bars);
+          break;
+        }
+        break;
+      case SDL_QUIT:
         running = 0;
+        break;
       }
     }
 
