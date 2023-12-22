@@ -29,10 +29,10 @@ int main() {
     return -1;
   }
 
+  int numBars = 20;
+
   SDL_Event e;
   int running = 1;
-
-  Bar* bar = CreateBar(200, 700, 300);
 
   while (running) {
     while (SDL_PollEvent(&e) != 0) {
@@ -44,12 +44,9 @@ int main() {
     SDL_SetRenderDrawColor(renderer, BG);
     SDL_RenderClear(renderer);
 
-    DrawBar(renderer, bar);
-
     SDL_RenderPresent(renderer);
   }
 
-  DestroyBar(bar);
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
   SDL_Quit();
