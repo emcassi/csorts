@@ -8,6 +8,5 @@ typedef struct BarList {
 } BarList;
 
 BarList* CreateBarList();
-BarList* CreateBarListWithInitalCapacity(size_t capacity);
 int AddToBarList(BarList* list, Bar bar);
 void DestroyBarList(BarList* list);

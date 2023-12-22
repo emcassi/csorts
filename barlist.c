@@ -22,25 +22,6 @@ BarList *CreateBarList() {
   return list;
 }
 
-BarList *CreateBarListWithInitalCapacity(size_t capacity) {
-  BarList *list = malloc(sizeof(BarList));
-  if (list == NULL) {
-    fprintf(stderr, "Unable to create BarList\n");
-    return NULL;
-  }
-
-  list->capacity = capacity;
-  list->array = (Bar *)malloc(sizeof(Bar) * list->capacity);
-  if (list->array == NULL) {
-    fprintf(stderr, "Unable to create BarList array\n");
-    free(list);
-    return NULL;
-  }
-
-  list->size = 0;
-  return list;
-}
-
 int AddToBarList(BarList *list, Bar bar) {
   // Increase Capacity if necessary
   if (list->size == list->capacity) {
@@ -72,8 +53,7 @@ int AddToBarList(BarList *list, Bar bar) {
 
 int RemoveFromBarList(BarList *list, size_t index) {
   if (list->size == 0) {
-    fprintf(stderr,
-            "Can't remove that element from BarList: List is empty\n");
+    fprintf(stderr, "Can't remove that element from BarList: List is empty\n");
     return -1;
   }
 
