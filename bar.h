@@ -12,9 +12,10 @@ typedef struct Bar {
 
 enum BarStatus {
   BAR_DEFAULT,
+  BAR_SELECTED,
 };
 
-Bar* CreateBar(int x, int y, int h);
+Bar *CreateBar(int x, int y, int h);
 void DrawBar(SDL_Renderer *renderer, Bar bar);
 void DestroyBar(Bar *bar);
 

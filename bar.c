@@ -19,6 +19,10 @@ void DrawBar(SDL_Renderer *renderer, Bar bar) {
   switch (bar.status) {
   case BAR_DEFAULT:
     SDL_SetRenderDrawColor(renderer, WHITE);
+    break;
+  case BAR_SELECTED:
+    SDL_SetRenderDrawColor(renderer, GREEN);
+    break;
   }
   SDL_RenderFillRect(renderer, &rect);
 }
