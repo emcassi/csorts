@@ -1,4 +1,5 @@
 #include <SDL2/SDL_render.h>
+
 typedef struct Bar {
   int x;
   int y;
