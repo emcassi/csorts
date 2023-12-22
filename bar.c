@@ -1,4 +1,5 @@
 #include "bar.h"
+#include "defaults.h"
 #include "colors.h"
 #include <SDL2/SDL_rect.h>
 #include <SDL2/SDL_render.h>
@@ -13,7 +14,7 @@ Bar *CreateBar(int x, int y, int h) {
 }
 
 void DrawBar(SDL_Renderer *renderer, Bar *bar) {
-  SDL_Rect rect = {bar->x, bar->y - bar->h, 20, bar->h};
+  SDL_Rect rect = {bar->x, bar->y - bar->h, BAR_WIDTH, bar->h};
 
   switch (bar->status) {
   case BAR_DEFAULT:
