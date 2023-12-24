@@ -11,7 +11,7 @@ BarList *CreateBarList() {
   }
 
   list->capacity = INITIAL_BARLIST_CAPACITY;
-  list->array = (Bar *)malloc(sizeof(Bar) * list->capacity);
+  list->array = (Bar **)malloc(sizeof(Bar *) * list->capacity);
   if (list->array == NULL) {
     fprintf(stderr, "Unable to create BarList array\n");
     free(list);
@@ -22,7 +22,7 @@ BarList *CreateBarList() {
   return list;
 }
 
-int AddToBarList(BarList *list, Bar bar) {
+int AddToBarList(BarList *list, Bar *bar) {
   // Increase Capacity if necessary
   if (list->size == list->capacity) {
     if (list->capacity == MAX_BARLIST_CAPACITY) {
@@ -36,7 +36,7 @@ int AddToBarList(BarList *list, Bar bar) {
       return -1;
     }
 
-    Bar *temp = realloc(list->array, sizeof(Bar) * newCapacity);
+    Bar **temp = realloc(list->array, sizeof(Bar *) * newCapacity);
     if (temp == NULL) {
       fprintf(stderr, "Can't increase Bars Capacity\n");
       return -1;
@@ -63,16 +63,29 @@ int RemoveFromBarList(BarList *list, size_t index) {
     return -1;
   }
 
+  Bar *barToRemove = list->array[index];
+  if (barToRemove == NULL) {
+    fprintf(stderr,
+            "Can't remove that element from BarList: Element doesn't exist\n");
+    return -1;
+  }
+
   for (size_t i = index; i < list->size - 1; i++) {
     list->array[i] = list->array[i + 1];
   }
 
+  free(barToRemove);
   list->size--;
   return 0;
 }
 
 void DestroyBarList(BarList *list) {
   if (list != NULL) {
+    for (size_t i = 0; i < list->size; i++) {
+      if (list->array[i] != NULL) {
+        free(list->array[i]);
+      }
+    }
     free(list->array);
     free(list);
   }
