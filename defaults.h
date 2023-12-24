@@ -5,4 +5,6 @@
 #define INITIAL_BARLIST_CAPACITY 128
 #define MAX_BARLIST_CAPACITY 16384 // Allows 128 resizes
 
+#define SORT_DELAY 500
+
 #endif // !DEFAULTS_H

@@ -5,13 +5,13 @@
 #include <stdlib.h>
 
 typedef struct BarList {
-  Bar *array;
+  Bar **array;
   size_t size;
   size_t capacity;
 } BarList;
 
 BarList *CreateBarList();
-int AddToBarList(BarList *list, Bar bar);
+int AddToBarList(BarList *list, Bar *bar);
 void DestroyBarList(BarList *list);
 
 #endif // !BARLIST_H

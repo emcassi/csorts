@@ -14,6 +14,10 @@ const int graphBottomY = 710;
 const int numBars = 200;
 const int maxBarHeight = 700;
 
+const int sortTick = 25;
+const int minSortDelay = 0;
+const int maxSortDelay = 2000;
+
 void Quit();
 void RandomizeBars(BarList *bars);
 
