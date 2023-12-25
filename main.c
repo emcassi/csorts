@@ -151,11 +151,6 @@ int main() {
     }
 
     SDL_RenderPresent(renderer);
-
-    if (sorting && sortable && bubbleSetup.b > 0) {
-      // bars->array[bubbleSetup.b - 1]->status = BAR_DEFAULT;
-      // bars->array[bubbleSetup.b]->status = BAR_DEFAULT;
-    }
   }
 
   Quit();
